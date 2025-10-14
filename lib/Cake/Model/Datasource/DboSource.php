@@ -515,9 +515,9 @@ class DboSource extends DataSource {
 		} catch (PDOException $e) {
 			//this is adding a dynamic property querystring
 			if (isset($query->queryString)) {
-				$e->queryString = $query->queryString;
+				$e->errorInfo["queryString"] = $query->queryString;
 			} else {
-				$e->queryString = $sql;
+				$e->errorInfo["queryString"] = $sql;
 			}
 			throw $e;
 		}
