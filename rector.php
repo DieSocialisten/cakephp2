@@ -3,9 +3,8 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
-use Rector\Php82\Rector\FuncCall\Utf8DecodeEncodeToMbConvertEncodingRector;
-use Rector\Transform\Rector\Class_\AddAllowDynamicPropertiesAttributeRector;
+use Rector\Php84\Rector\FuncCall\AddEscapeArgumentRector;
+use Rector\Php84\Rector\Param\ExplicitNullableParamTypeRector;
 use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
@@ -13,9 +12,8 @@ return RectorConfig::configure()
         __DIR__ . '/app',
         __DIR__ . '/lib',
     ])
-    ->withConfiguredRule(AddAllowDynamicPropertiesAttributeRector::class, ["*"])
     ->withRules([
-        NullToStrictStringFuncCallArgRector::class,
-        Utf8DecodeEncodeToMbConvertEncodingRector::class,
+        AddEscapeArgumentRector::class,
+        ExplicitNullableParamTypeRector::class,
     ])
-    ->withPHPVersion(PhpVersion::PHP_83);
+    ->withPHPVersion(PhpVersion::PHP_84);
