@@ -205,7 +205,7 @@ class CakeRequest implements ArrayAccess {
 		if ($isArray && isset($this->data['data'])) {
 			$data = $this->data['data'];
 			if (count($this->data) <= 1) {
-				$this->data = $data;
+				$this->data = is_array($data) ? $data : $this->data;
 			} else {
 				unset($this->data['data']);
 				$this->data = Hash::merge($this->data, $data);
