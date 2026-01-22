@@ -202,7 +202,7 @@ class CakeRequest implements ArrayAccess {
 			$this->data = array();
 		}
 
-		if ($isArray && isset($this->data['data'])) {
+		if ($isArray && isset($this->data['data']) && is_array($this->data['data'])) {
 			$data = $this->data['data'];
 			if (count($this->data) <= 1) {
 				$this->data = $data;
