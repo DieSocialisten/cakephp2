@@ -284,7 +284,11 @@ class FileEngine extends CacheEngine {
 			}
 
 			if ($threshold) {
-				$mtime = $file->getMTime();
+				try {
+					$mtime = $file->getMTime();
+				} catch (RuntimeException $e) { // Race condition: The file was most likely deleted in the meantime
+					continue;
+				}
 
 				if ($mtime > $threshold) {
 					continue;
